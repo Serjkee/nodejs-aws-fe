@@ -33,8 +33,8 @@ export default function CartItems({items, isEditable}: CartItemsProps) {
   return (
     <>
       <List disablePadding>
-        {items.map((cartItem: CartItem) => (
-          <ListItem className={classes.listItem} key={cartItem.product.id}>
+        {items.map((cartItem: CartItem, index) => (
+          <ListItem className={classes.listItem} key={`${cartItem.product.id}${index}`}>
             {isEditable && <AddProductToCart product={cartItem.product}/>}
             <ListItemText primary={cartItem.product.title} secondary={cartItem.product.description}/>
             <Typography
