@@ -37,7 +37,13 @@ export default function Products() {
 
   useEffect(() => {
     axios.get(API_PATHS.product)
-      .then(res => setProducts(res.data))
+      .then(res => {
+        res.data.forEach((product: any) => {
+          product.count = product.amount;
+          delete product.amount;
+        })
+        setProducts(res.data)
+      })
       .catch((err) => console.log('error', err));
     // setProducts(productList);
   }, [])
